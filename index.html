@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ТікТок Контент-Мейкери — Price List</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #ECEAE6;
+    color: #111111;
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ---- Vertical PRICE LIST rail ---- */
+  .rail {
+    flex: 0 0 140px;
+    position: relative;
+    overflow: hidden;
+    border-right: 1px solid #00000022;
+  }
+
+  .rail-text {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) rotate(180deg);
+    writing-mode: vertical-rl;
+    font-family: 'Arial Black', 'Helvetica Neue', sans-serif;
+    font-weight: 900;
+    font-size: 168px;
+    line-height: 0.78;
+    letter-spacing: -6px;
+    color: #111111;
+    white-space: nowrap;
+  }
+
+  /* ---- Main content ---- */
+  .content {
+    flex: 1;
+    padding: 64px 56px 80px;
+    max-width: 980px;
+  }
+
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #555555;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+
+  h1.main-title {
+    font-family: 'Arial Black', 'Helvetica Neue', sans-serif;
+    font-weight: 900;
+    font-size: 64px;
+    line-height: 1.02;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .intro-text {
+    font-size: 16px;
+    line-height: 1.65;
+    color: #1a1a1a;
+    max-width: 640px;
+    margin-bottom: 64px;
+  }
+
+  h2.section-title {
+    font-family: 'Arial Black', 'Helvetica Neue', sans-serif;
+    font-weight: 900;
+    font-size: 44px;
+    line-height: 1;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    letter-spacing: -0.5px;
+  }
+
+  .section-sub {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #777777;
+    margin-bottom: 22px;
+    font-weight: 600;
+  }
+
+  .section {
+    margin-bottom: 68px;
+  }
+
+  .hr {
+    border: none;
+    border-top: 1px solid #00000028;
+    margin: 0;
+  }
+
+  /* ---- Brands / stats grid ---- */
+  .brand-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px 24px;
+    padding-top: 8px;
+  }
+
+  .brand-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .brand-circle-link {
+    display: block;
+    width: 100%;
+    max-width: 130px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid #111111;
+    background: #DDDAD3;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .brand-circle-link:hover {
+    transform: scale(1.06);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.16);
+  }
+
+  .brand-circle-link img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .brand-caption {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    align-items: center;
+  }
+
+  .brand-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111111;
+    letter-spacing: -0.1px;
+    line-height: 1.3;
+  }
+
+  .brand-stats {
+    font-size: 11px;
+    font-weight: 400;
+    color: #555555;
+    letter-spacing: 0;
+    line-height: 1.4;
+    white-space: nowrap;
+  }
+
+  /* ---- Services list ---- */
+  .service-list {
+    border-top: 1px solid #00000028;
+  }
+
+  .service-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 18px 0;
+    border-bottom: 1px solid #00000028;
+    gap: 16px;
+  }
+
+  .service-name {
+    font-size: 17px;
+    font-weight: 500;
+  }
+
+  .service-mark {
+    color: #555555;
+    margin-right: 10px;
+    font-weight: 700;
+  }
+
+  .note-block {
+    margin-top: 28px;
+    padding-left: 0;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #444444;
+  }
+
+  .note-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: flex-start;
+  }
+
+  .note-icon {
+    flex-shrink: 0;
+    font-weight: 900;
+    font-size: 14px;
+    width: 16px;
+    text-align: center;
+  }
+
+  .price-callout {
+    margin-top: 36px;
+    padding-top: 24px;
+    border-top: 1px solid #00000028;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+
+  .price-label {
+    font-size: 14px;
+    color: #555555;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+  }
+
+  .price-value {
+    font-family: 'Arial Black', 'Helvetica Neue', sans-serif;
+    font-weight: 900;
+    font-size: 38px;
+    letter-spacing: -0.5px;
+  }
+
+  /* ---- Benefits ---- */
+  .benefit-text {
+    font-size: 17px;
+    line-height: 1.75;
+    max-width: 620px;
+    border-top: 1px solid #00000028;
+    padding-top: 24px;
+  }
+
+  /* ---- Stages ---- */
+  .stage-row {
+    display: flex;
+    gap: 20px;
+    padding: 22px 0;
+    border-bottom: 1px solid #00000028;
+    align-items: flex-start;
+  }
+
+  .stage-list {
+    border-top: 1px solid #00000028;
+  }
+
+  .stage-num {
+    font-family: 'Arial Black', 'Helvetica Neue', sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    flex-shrink: 0;
+    width: 40px;
+    color: #999999;
+  }
+
+  .stage-body p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .payment-note {
+    margin-top: 28px;
+    padding-top: 22px;
+    border-top: 1px solid #00000028;
+    font-size: 13px;
+    line-height: 1.75;
+    color: #444444;
+  }
+
+  .payment-note p {
+    margin-bottom: 10px;
+  }
+
+  .payment-note p:before {
+    content: "* ";
+  }
+
+  /* ---- Footer / contacts ---- */
+  .footer {
+    margin-top: 80px;
+    padding-top: 28px;
+    border-top: 1px solid #00000028;
+  }
+
+  .footer-title {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #777777;
+    margin-bottom: 22px;
+    font-weight: 700;
+  }
+
+  .contact-buttons {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .contact-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 22px;
+    border: 1px solid #111111;
+    border-radius: 0;
+    text-decoration: none;
+    color: #111111;
+    font-size: 15px;
+    font-weight: 700;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .contact-btn:hover {
+    background: #111111;
+    color: #ECEAE6;
+  }
+
+  .contact-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+
+  /* ---- Mobile ---- */
+  @media (max-width: 920px) {
+    .brand-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 36px 20px;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .page {
+      flex-direction: column;
+    }
+
+    .rail {
+      flex: none;
+      width: 100%;
+      height: 90px;
+      border-right: none;
+      border-bottom: 1px solid #00000022;
+    }
+
+    .rail-text {
+      bottom: auto;
+      top: 0;
+      left: 0;
+      transform: none;
+      writing-mode: horizontal-tb;
+      font-size: 56px;
+      letter-spacing: -2px;
+      line-height: 90px;
+      padding-left: 24px;
+      white-space: nowrap;
+    }
+
+    .content {
+      padding: 40px 22px 56px;
+      max-width: 100%;
+    }
+
+    h1.main-title {
+      font-size: 38px;
+    }
+
+    h2.section-title {
+      font-size: 30px;
+    }
+
+    .service-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+    }
+
+    .stage-row {
+      gap: 14px;
+    }
+
+    .price-value {
+      font-size: 30px;
+    }
+
+    .contact-buttons {
+      flex-direction: column;
+    }
+
+    .contact-btn {
+      justify-content: center;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="rail" aria-hidden="true">
+    <div class="rail-text">price list</div>
+  </div>
+
+  <div class="content">
+
+    <!-- HEADER -->
+    <div class="eyebrow">Команда контент-мейкерів</div>
+    <h1 class="main-title">ТікТок<br>Контент-Мейкери</h1>
+    <p class="intro-text">
+      Ми — команда по створенню контенту для бізнесу на ТікТок платформі. Створюємо унікальний контент зі свого професійного та творчого погляду на продукт.
+    </p>
+
+    <!-- SERVICES & PRICE -->
+    <div class="section">
+      <h2 class="section-title">Послуги та вартість</h2>
+      <div class="section-sub">Що входить у пакет</div>
+
+      <div class="service-list">
+        <div class="service-row">
+          <div class="service-name"><span class="service-mark">—</span>Написання стратегії просування</div>
+        </div>
+        <div class="service-row">
+          <div class="service-name"><span class="service-mark">—</span>12 унікальних сценаріїв</div>
+        </div>
+        <div class="service-row">
+          <div class="service-name"><span class="service-mark">—</span>Зйомка та монтаж відео</div>
+        </div>
+        <div class="service-row">
+          <div class="service-name"><span class="service-mark">—</span>Постинг контенту згідно графіку</div>
+        </div>
+        <div class="service-row">
+          <div class="service-name"><span class="service-mark">—</span>Аналітика кожного місяця</div>
+        </div>
+      </div>
+
+      <div class="note-block">
+        <div class="note-row">
+          <span class="note-icon">!</span>
+          <span>Сюди не входить спілкування з підписниками та обробка замовлень.</span>
+        </div>
+        <div class="note-row">
+          <span class="note-icon">!</span>
+          <span>Якщо у вас немає локації для зйомки, та потрібна окрема студія чи моделі — додаткові витрати обговорюються.</span>
+        </div>
+      </div>
+
+      <div class="price-callout">
+        <span class="price-label">Вартість на місяць</span>
+        <span class="price-value">850$</span>
+      </div>
+    </div>
+
+    <!-- PROJECTS & STATS -->
+    <div class="section">
+      <h2 class="section-title">Проєкти та статистика</h2>
+      <div class="section-sub">Реалізовані кейси · ТікТок</div>
+
+      <div class="brand-grid">
+        <div class="brand-item">
+          <a class="brand-circle-link" href="https://vt.tiktok.com/ZSQn53dsc/" target="_blank" rel="noopener">
+            <img src="logo1.jpg" alt="Beermuda pub">
+          </a>
+          <div class="brand-caption">
+            <span class="brand-name">Beermuda pub</span>
+            <span class="brand-stats">👀 104.8K | ❤️ 4032 | 💬 49 | 🔗 3198</span>
+          </div>
+        </div>
+
+        <div class="brand-item">
+          <a class="brand-circle-link" href="https://vt.tiktok.com/ZSQnmVQSN/" target="_blank" rel="noopener">
+            <img src="logo2.jpg" alt="Coffee ocean">
+          </a>
+          <div class="brand-caption">
+            <span class="brand-name">Coffee ocean</span>
+            <span class="brand-stats">👀 527.6K | ❤️ 17.8K | 💬 193 | 🔗 2331</span>
+          </div>
+        </div>
+
+        <div class="brand-item">
+          <a class="brand-circle-link" href="https://vt.tiktok.com/ZSQn5HNg4/" target="_blank" rel="noopener">
+            <img src="logo3.jpg" alt="YASNO">
+          </a>
+          <div class="brand-caption">
+            <span class="brand-name">YASNO</span>
+            <span class="brand-stats">👀 111.9K | ❤️ 329 | 💬 8 | 🔗 32</span>
+          </div>
+        </div>
+
+        <div class="brand-item">
+          <a class="brand-circle-link" href="https://vt.tiktok.com/ZSQn57g72/" target="_blank" rel="noopener">
+            <img src="logo4.jpg" alt="Kompot">
+          </a>
+          <div class="brand-caption">
+            <span class="brand-name">Kompot</span>
+            <span class="brand-stats">👀 33.2K | ❤️ 2470 | 💬 55 | 🔗 172</span>
+          </div>
+        </div>
+
+        <div class="brand-item">
+          <a class="brand-circle-link" href="https://vt.tiktok.com/ZSQnP7xUr/" target="_blank" rel="noopener">
+            <img src="logo5.jpg" alt="Tavria V">
+          </a>
+          <div class="brand-caption">
+            <span class="brand-name">Tavria V</span>
+            <span class="brand-stats">👀 77.1K | ❤️ 1044 | 💬 68 | 🔗 45</span>
+          </div>
+        </div>
+
+        <div class="brand-item">
+          <a class="brand-circle-link" href="https://vt.tiktok.com/ZSQnfn5YP/" target="_blank" rel="noopener">
+            <img src="logo6.jpg" alt="Muzone music hub">
+          </a>
+          <div class="brand-caption">
+            <span class="brand-name">Muzone music hub</span>
+            <span class="brand-stats">👀 23.3K | ❤️ 1944 | 💬 100 | 🔗 46</span>
+          </div>
+        </div>
+
+        <div class="brand-item">
+          <a class="brand-circle-link" href="https://vt.tiktok.com/ZSQn5dRyQ/" target="_blank" rel="noopener">
+            <img src="logo7.jpg" alt="Foundation">
+          </a>
+          <div class="brand-caption">
+            <span class="brand-name">Foundation</span>
+            <span class="brand-stats">👀 102K | ❤️ 6753 | 💬 51 | 🔗 3279</span>
+          </div>
+        </div>
+
+        <div class="brand-item">
+          <a class="brand-circle-link" href="https://vt.tiktok.com/ZSQn53dYx/" target="_blank" rel="noopener">
+            <img src="logo8.jpg" alt="Vitto Rossi">
+          </a>
+          <div class="brand-caption">
+            <span class="brand-name">Vitto Rossi</span>
+            <span class="brand-stats">👀 244.8K | ❤️ 18.1K | 💬 263 | 🔗 11.8K</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHAT YOU GET -->
+    <div class="section">
+      <h2 class="section-title">Що ви отримаєте</h2>
+      <p class="benefit-text">
+        Збільшення аудиторії, залучення нових клієнтів, представленість бренду та можливість більше розкрити продукт.
+      </p>
+    </div>
+
+    <!-- STAGES -->
+    <div class="section">
+      <h2 class="section-title">Умови праці</h2>
+      <div class="section-sub">Етапи роботи</div>
+
+      <div class="stage-list">
+        <div class="stage-row">
+          <div class="stage-num">01</div>
+          <div class="stage-body">
+            <p>Починаємо збирати матеріал та підготовку до зйомки — пишемо стратегію, після узгодження — сценарії.</p>
+          </div>
+        </div>
+        <div class="stage-row">
+          <div class="stage-num">02</div>
+          <div class="stage-body">
+            <p>Домовляємось про зйомку, знімаємо, монтуємо.</p>
+          </div>
+        </div>
+        <div class="stage-row">
+          <div class="stage-num">03</div>
+          <div class="stage-body">
+            <p>Ви створюєте акаунт, і ми починаємо завантажувати відео.</p>
+          </div>
+        </div>
+        <div class="stage-row">
+          <div class="stage-num">04</div>
+          <div class="stage-body">
+            <p>Аналізуємо випущений контент. Редагуємо стратегію згідно з результатом (після місяця роботи).</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="payment-note">
+        <p>Ми працюємо по передоплаті: 50% на початку співпраці, наступна частина — вкінці місяця.</p>
+        <p>Початок роботи вважається з моменту, як ми потиснули руки та після оплати.</p>
+        <p>Місяць постингу рахується з публікації першого відео.</p>
+      </div>
+    </div>
+
+    <!-- FOOTER / CONTACTS -->
+    <div class="footer">
+      <div class="footer-title">Зв'язатися з нами</div>
+      <div class="contact-buttons">
+        <a class="contact-btn" href="https://t.me/your_username" target="_blank" rel="noopener">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M22 2L11 13" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Telegram
+        </a>
+        <a class="contact-btn" href="https://instagram.com/your_username" target="_blank" rel="noopener">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="2" y="2" width="20" height="20" rx="5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="12" cy="12" r="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
+          </svg>
+          Instagram
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
