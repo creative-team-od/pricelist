@@ -20,52 +20,14 @@
   }
 
   .page {
-    display: flex;
-    min-height: 100vh;
-  }
-
-  /* ---- Vertical PRICE LIST rail (top of page only) ---- */
-  .rail {
-    flex: 0 0 160px;
-    position: relative;
-    overflow: hidden;
-    border-right: 1px solid #00000022;
-    align-self: flex-start;
-    height: 100vh;
-    position: sticky;
-    top: 0;
-  }
-
-  .rail-text {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%) rotate(180deg);
-    writing-mode: vertical-rl;
-    font-family: 'Arial Black', 'Helvetica Neue', sans-serif;
-    font-weight: 900;
-    font-size: 148px;
-    line-height: 0.78;
-    letter-spacing: -6px;
-    color: #111111;
-    white-space: nowrap;
-    padding-bottom: 6px;
+    display: block;
   }
 
   /* ---- Main content ---- */
   .content {
-    flex: 1;
-    padding: 64px 56px 80px;
-    max-width: 980px;
-  }
-
-  .eyebrow {
-    font-size: 12px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #555555;
-    margin-bottom: 10px;
-    font-weight: 700;
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 72px 32px 80px;
   }
 
   h1.main-title {
@@ -360,35 +322,11 @@
 
   @media (max-width: 760px) {
     .page {
-      flex-direction: column;
-    }
-
-    .rail {
-      flex: none;
-      width: 100%;
-      height: 90px;
-      border-right: none;
-      border-bottom: 1px solid #00000022;
-      position: relative;
-      top: auto;
-    }
-
-    .rail-text {
-      bottom: auto;
-      top: 0;
-      left: 0;
-      transform: none;
-      writing-mode: horizontal-tb;
-      font-size: 52px;
-      letter-spacing: -2px;
-      line-height: 90px;
-      padding-left: 24px;
-      padding-bottom: 0;
-      white-space: nowrap;
+      display: block;
     }
 
     .content {
-      padding: 40px 22px 56px;
+      padding: 48px 22px 56px;
       max-width: 100%;
     }
 
@@ -430,16 +368,9 @@
 </head>
 <body>
 
-<div class="page">
-
-  <div class="rail" aria-hidden="true">
-    <div class="rail-text">price list</div>
-  </div>
-
-  <div class="content">
+<div class="content">
 
     <!-- HEADER -->
-    <div class="eyebrow">Команда контент-мейкерів</div>
     <h1 class="main-title">ТікТок<br>Контент-Мейкери</h1>
     <p class="intro-text">
       Ми — команда по створенню контенту для бізнесу на ТікТок платформі. Створюємо унікальний контент зі свого професійного та творчого погляду на продукт.
@@ -692,7 +623,6 @@
     </div>
 
   </div>
-</div>
 
 </body>
 </html>
