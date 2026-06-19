@@ -14,17 +14,26 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
   .page {
     display: flex;
     min-height: 100vh;
   }
 
-  /* ---- Vertical PRICE LIST rail ---- */
+  /* ---- Vertical PRICE LIST rail (top of page only) ---- */
   .rail {
-    flex: 0 0 140px;
+    flex: 0 0 160px;
     position: relative;
     overflow: hidden;
     border-right: 1px solid #00000022;
+    align-self: flex-start;
+    height: 100vh;
+    position: sticky;
+    top: 0;
   }
 
   .rail-text {
@@ -35,11 +44,12 @@
     writing-mode: vertical-rl;
     font-family: 'Arial Black', 'Helvetica Neue', sans-serif;
     font-weight: 900;
-    font-size: 168px;
+    font-size: 148px;
     line-height: 0.78;
     letter-spacing: -6px;
     color: #111111;
     white-space: nowrap;
+    padding-bottom: 6px;
   }
 
   /* ---- Main content ---- */
@@ -123,6 +133,7 @@
 
   .brand-circle-link {
     display: block;
+    position: relative;
     width: 100%;
     max-width: 130px;
     aspect-ratio: 1 / 1;
@@ -135,7 +146,7 @@
   }
 
   .brand-circle-link:hover {
-    transform: scale(1.06);
+    transform: scale(1.05);
     box-shadow: 0 6px 16px rgba(0,0,0,0.16);
   }
 
@@ -145,6 +156,34 @@
     max-width: 100%;
     object-fit: cover;
     display: block;
+  }
+
+  /* Always-visible play button — works without hover on touch devices */
+  .brand-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.88);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+
+  .brand-circle-link:hover .brand-play-btn {
+    transform: translate(-50%, -50%) scale(1.1);
+    background: rgba(255, 255, 255, 0.96);
+  }
+
+  .brand-play-btn svg {
+    width: 14px;
+    height: 14px;
+    margin-left: 2px;
   }
 
   .brand-caption {
@@ -169,6 +208,32 @@
     letter-spacing: 0;
     line-height: 1.4;
     white-space: nowrap;
+  }
+
+  /* ---- Other projects: vertical video grid (purely decorative) ---- */
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding-top: 8px;
+  }
+
+  .video-card {
+    display: block;
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid #111111;
+    background: #111111;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .video-card video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
   /* ---- Services list ---- */
@@ -219,30 +284,6 @@
     text-align: center;
   }
 
-  .price-callout {
-    margin-top: 36px;
-    padding-top: 24px;
-    border-top: 1px solid #00000028;
-    display: flex;
-    align-items: baseline;
-    gap: 14px;
-  }
-
-  .price-label {
-    font-size: 14px;
-    color: #555555;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-weight: 700;
-  }
-
-  .price-value {
-    font-family: 'Arial Black', 'Helvetica Neue', sans-serif;
-    font-weight: 900;
-    font-size: 38px;
-    letter-spacing: -0.5px;
-  }
-
   /* ---- Benefits ---- */
   .benefit-text {
     font-size: 17px;
@@ -279,10 +320,18 @@
     line-height: 1.6;
   }
 
-  .payment-note {
-    margin-top: 28px;
-    padding-top: 22px;
+  /* ---- Final price block ---- */
+  .price-line {
+    font-family: 'Arial Black', 'Helvetica Neue', sans-serif;
+    font-weight: 900;
+    font-size: 32px;
+    letter-spacing: -0.5px;
     border-top: 1px solid #00000028;
+    padding-top: 26px;
+    margin-bottom: 22px;
+  }
+
+  .payment-note {
     font-size: 13px;
     line-height: 1.75;
     color: #444444;
@@ -296,58 +345,16 @@
     content: "* ";
   }
 
-  /* ---- Footer / contacts ---- */
-  .footer {
-    margin-top: 80px;
-    padding-top: 28px;
-    border-top: 1px solid #00000028;
-  }
-
-  .footer-title {
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #777777;
-    margin-bottom: 22px;
-    font-weight: 700;
-  }
-
-  .contact-buttons {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-
-  .contact-btn {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 14px 22px;
-    border: 1px solid #111111;
-    border-radius: 0;
-    text-decoration: none;
-    color: #111111;
-    font-size: 15px;
-    font-weight: 700;
-    transition: background 0.15s ease, color 0.15s ease;
-  }
-
-  .contact-btn:hover {
-    background: #111111;
-    color: #ECEAE6;
-  }
-
-  .contact-icon {
-    width: 18px;
-    height: 18px;
-    flex-shrink: 0;
-  }
-
   /* ---- Mobile ---- */
   @media (max-width: 920px) {
     .brand-grid {
       grid-template-columns: repeat(2, 1fr);
       gap: 36px 20px;
+    }
+
+    .video-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
     }
   }
 
@@ -362,6 +369,8 @@
       height: 90px;
       border-right: none;
       border-bottom: 1px solid #00000022;
+      position: relative;
+      top: auto;
     }
 
     .rail-text {
@@ -370,10 +379,11 @@
       left: 0;
       transform: none;
       writing-mode: horizontal-tb;
-      font-size: 56px;
+      font-size: 52px;
       letter-spacing: -2px;
       line-height: 90px;
       padding-left: 24px;
+      padding-bottom: 0;
       white-space: nowrap;
     }
 
@@ -400,16 +410,20 @@
       gap: 14px;
     }
 
-    .price-value {
-      font-size: 30px;
+    .price-line {
+      font-size: 24px;
     }
 
-    .contact-buttons {
-      flex-direction: column;
+    /* Bigger touch targets + always-visible play button on mobile */
+    .brand-play-btn {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.92);
     }
 
-    .contact-btn {
-      justify-content: center;
+    .brand-play-btn svg {
+      width: 16px;
+      height: 16px;
     }
   }
 </style>
@@ -431,9 +445,9 @@
       Ми — команда по створенню контенту для бізнесу на ТікТок платформі. Створюємо унікальний контент зі свого професійного та творчого погляду на продукт.
     </p>
 
-    <!-- SERVICES & PRICE -->
+    <!-- SERVICES (no price here) -->
     <div class="section">
-      <h2 class="section-title">Послуги та вартість</h2>
+      <h2 class="section-title">Послуги</h2>
       <div class="section-sub">Що входить у пакет</div>
 
       <div class="service-list">
@@ -464,22 +478,22 @@
           <span>Якщо у вас немає локації для зйомки, та потрібна окрема студія чи моделі — додаткові витрати обговорюються.</span>
         </div>
       </div>
-
-      <div class="price-callout">
-        <span class="price-label">Вартість на місяць</span>
-        <span class="price-value">850$</span>
-      </div>
     </div>
 
-    <!-- PROJECTS & STATS -->
+    <!-- TIK TOK STATS -->
     <div class="section">
-      <h2 class="section-title">Проєкти та статистика</h2>
-      <div class="section-sub">Реалізовані кейси · ТікТок</div>
+      <h2 class="section-title">ТІК ТОК</h2>
+      <div class="section-sub">найкращі відео та їх статистика</div>
 
       <div class="brand-grid">
         <div class="brand-item">
           <a class="brand-circle-link" href="https://vt.tiktok.com/ZSQn53dsc/" target="_blank" rel="noopener">
             <img src="logo1.jpg" alt="Beermuda pub">
+            <span class="brand-play-btn">
+              <svg viewBox="0 0 24 24" fill="#111111">
+                <path d="M8 5.5V18.5L19 12L8 5.5Z"/>
+              </svg>
+            </span>
           </a>
           <div class="brand-caption">
             <span class="brand-name">Beermuda pub</span>
@@ -490,6 +504,11 @@
         <div class="brand-item">
           <a class="brand-circle-link" href="https://vt.tiktok.com/ZSQnmVQSN/" target="_blank" rel="noopener">
             <img src="logo2.jpg" alt="Coffee ocean">
+            <span class="brand-play-btn">
+              <svg viewBox="0 0 24 24" fill="#111111">
+                <path d="M8 5.5V18.5L19 12L8 5.5Z"/>
+              </svg>
+            </span>
           </a>
           <div class="brand-caption">
             <span class="brand-name">Coffee ocean</span>
@@ -500,6 +519,11 @@
         <div class="brand-item">
           <a class="brand-circle-link" href="https://vt.tiktok.com/ZSQn5HNg4/" target="_blank" rel="noopener">
             <img src="logo3.jpg" alt="YASNO">
+            <span class="brand-play-btn">
+              <svg viewBox="0 0 24 24" fill="#111111">
+                <path d="M8 5.5V18.5L19 12L8 5.5Z"/>
+              </svg>
+            </span>
           </a>
           <div class="brand-caption">
             <span class="brand-name">YASNO</span>
@@ -510,6 +534,11 @@
         <div class="brand-item">
           <a class="brand-circle-link" href="https://vt.tiktok.com/ZSQn57g72/" target="_blank" rel="noopener">
             <img src="logo4.jpg" alt="Kompot">
+            <span class="brand-play-btn">
+              <svg viewBox="0 0 24 24" fill="#111111">
+                <path d="M8 5.5V18.5L19 12L8 5.5Z"/>
+              </svg>
+            </span>
           </a>
           <div class="brand-caption">
             <span class="brand-name">Kompot</span>
@@ -520,6 +549,11 @@
         <div class="brand-item">
           <a class="brand-circle-link" href="https://vt.tiktok.com/ZSQnP7xUr/" target="_blank" rel="noopener">
             <img src="logo5.jpg" alt="Tavria V">
+            <span class="brand-play-btn">
+              <svg viewBox="0 0 24 24" fill="#111111">
+                <path d="M8 5.5V18.5L19 12L8 5.5Z"/>
+              </svg>
+            </span>
           </a>
           <div class="brand-caption">
             <span class="brand-name">Tavria V</span>
@@ -528,18 +562,28 @@
         </div>
 
         <div class="brand-item">
-          <a class="brand-circle-link" href="https://vt.tiktok.com/ZSQnfn5YP/" target="_blank" rel="noopener">
-            <img src="logo6.jpg" alt="Muzone music hub">
+          <a class="brand-circle-link" href="https://vt.tiktok.com/ZSQvAEnXT/" target="_blank" rel="noopener">
+            <img src="logo6.jpg" alt="Бердичівське">
+            <span class="brand-play-btn">
+              <svg viewBox="0 0 24 24" fill="#111111">
+                <path d="M8 5.5V18.5L19 12L8 5.5Z"/>
+              </svg>
+            </span>
           </a>
           <div class="brand-caption">
-            <span class="brand-name">Muzone music hub</span>
-            <span class="brand-stats">👀 23.3K | ❤️ 1944 | 💬 100 | 🔗 46</span>
+            <span class="brand-name">Бердичівське</span>
+            <span class="brand-stats">👀 3.4M | ❤️ 426.8K | 💬 2451 | 🔗 236.9K</span>
           </div>
         </div>
 
         <div class="brand-item">
           <a class="brand-circle-link" href="https://vt.tiktok.com/ZSQn5dRyQ/" target="_blank" rel="noopener">
             <img src="logo7.jpg" alt="Foundation">
+            <span class="brand-play-btn">
+              <svg viewBox="0 0 24 24" fill="#111111">
+                <path d="M8 5.5V18.5L19 12L8 5.5Z"/>
+              </svg>
+            </span>
           </a>
           <div class="brand-caption">
             <span class="brand-name">Foundation</span>
@@ -550,11 +594,48 @@
         <div class="brand-item">
           <a class="brand-circle-link" href="https://vt.tiktok.com/ZSQn53dYx/" target="_blank" rel="noopener">
             <img src="logo8.jpg" alt="Vitto Rossi">
+            <span class="brand-play-btn">
+              <svg viewBox="0 0 24 24" fill="#111111">
+                <path d="M8 5.5V18.5L19 12L8 5.5Z"/>
+              </svg>
+            </span>
           </a>
           <div class="brand-caption">
             <span class="brand-name">Vitto Rossi</span>
             <span class="brand-stats">👀 244.8K | ❤️ 18.1K | 💬 263 | 🔗 11.8K</span>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OTHER PROJECTS: VERTICAL VIDEO GRID -->
+    <div class="section">
+      <h2 class="section-title">Інші проєкти</h2>
+
+      <div class="video-grid">
+        <div class="video-card">
+          <video src="video1.mp4" autoplay loop muted playsinline></video>
+        </div>
+        <div class="video-card">
+          <video src="video2.mp4" autoplay loop muted playsinline></video>
+        </div>
+        <div class="video-card">
+          <video src="video3.mp4" autoplay loop muted playsinline></video>
+        </div>
+        <div class="video-card">
+          <video src="video4.mp4" autoplay loop muted playsinline></video>
+        </div>
+        <div class="video-card">
+          <video src="video5.mp4" autoplay loop muted playsinline></video>
+        </div>
+        <div class="video-card">
+          <video src="video6.mp4" autoplay loop muted playsinline></video>
+        </div>
+        <div class="video-card">
+          <video src="video7.mp4" autoplay loop muted playsinline></video>
+        </div>
+        <div class="video-card">
+          <video src="video8.mp4" autoplay loop muted playsinline></video>
         </div>
       </div>
     </div>
@@ -598,33 +679,15 @@
           </div>
         </div>
       </div>
+    </div>
 
+    <!-- FINAL PRICE BLOCK -->
+    <div class="section">
+      <div class="price-line">Вартість послуг: на місяць — 850$</div>
       <div class="payment-note">
         <p>Ми працюємо по передоплаті: 50% на початку співпраці, наступна частина — вкінці місяця.</p>
         <p>Початок роботи вважається з моменту, як ми потиснули руки та після оплати.</p>
         <p>Місяць постингу рахується з публікації першого відео.</p>
-      </div>
-    </div>
-
-    <!-- FOOTER / CONTACTS -->
-    <div class="footer">
-      <div class="footer-title">Зв'язатися з нами</div>
-      <div class="contact-buttons">
-        <a class="contact-btn" href="https://t.me/your_username" target="_blank" rel="noopener">
-          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <path d="M22 2L11 13" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          Telegram
-        </a>
-        <a class="contact-btn" href="https://instagram.com/your_username" target="_blank" rel="noopener">
-          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <rect x="2" y="2" width="20" height="20" rx="5" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="12" cy="12" r="4.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
-          </svg>
-          Instagram
-        </a>
       </div>
     </div>
 
