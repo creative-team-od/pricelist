@@ -30,6 +30,34 @@
     padding: 72px 32px 80px;
   }
 
+  .team-photo {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 420px;
+    align-self: flex-end;
+  }
+
+  .team-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    background: transparent;
+  }
+
+  .header-grid {
+    display: flex;
+    align-items: flex-end;
+    gap: 48px;
+    margin-bottom: 64px;
+  }
+
+  .header-text {
+    flex: 1;
+    min-width: 0;
+    align-self: flex-end;
+  }
+
   h1.main-title {
     font-family: 'Arial Black', 'Helvetica Neue', sans-serif;
     font-weight: 900;
@@ -44,8 +72,8 @@
     font-size: 16px;
     line-height: 1.65;
     color: #1a1a1a;
-    max-width: 640px;
-    margin-bottom: 64px;
+    max-width: 480px;
+    margin-bottom: 0;
   }
 
   h2.section-title {
@@ -321,6 +349,29 @@
   }
 
   @media (max-width: 760px) {
+    .header-grid {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .team-photo {
+      max-width: 240px;
+      align-self: center;
+    }
+
+    .header-text {
+      width: 100%;
+      align-self: center;
+    }
+
+    .intro-text {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
     .page {
       display: block;
     }
@@ -371,10 +422,17 @@
 <div class="content">
 
     <!-- HEADER -->
-    <h1 class="main-title">ТікТок<br>Контент-Мейкери</h1>
-    <p class="intro-text">
-      Ми — команда по створенню контенту для бізнесу на ТікТок платформі. Створюємо унікальний контент зі свого професійного та творчого погляду на продукт.
-    </p>
+    <div class="header-grid">
+      <div class="team-photo">
+        <img src="team.png" alt="Команда" loading="eager">
+      </div>
+      <div class="header-text">
+        <h1 class="main-title">TIKTOK<br>КОНТЕНТ-<br>МЕЙКЕРИ</h1>
+        <p class="intro-text">
+          Ми — команда по створенню контенту для бізнесу на ТікТок платформі. Створюємо унікальний контент зі свого професійного та творчого погляду на продукт.
+        </p>
+      </div>
+    </div>
 
     <!-- SERVICES (no price here) -->
     <div class="section">
